@@ -7,4 +7,6 @@
   * [Page_fault](./linux/page_fault.md)
 * [Alert](./alert/README.md)
   * [Detect_anomaly](./alert/detect_anomaly.md)
+* [Ansible](./ansible/README.md)
+* [Diagram](./diagram/README.md)
 
