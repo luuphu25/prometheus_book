@@ -1,0 +1,14 @@
+- hosts: '{{ host }}'
+  become: yes
+  tasks:
+  - name: "enable status path"
+    replace:
+        path: /etc/php/7.0/fpm/pool.d/www.conf
+        regexp: ';pm.status_path = /status'
+        replace: 'pm.status_path = /status'
+        backup: yes
+
+  - name: "restart php_fpm"
+    service:
+        name: php7.0-fpm
+        state: restarted

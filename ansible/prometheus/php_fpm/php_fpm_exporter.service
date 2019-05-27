@@ -1,0 +1,12 @@
+[Unit]
+Description=Service which runs Php-fpm Exporter for Prometheus scraping
+
+[Service]
+User=www-data
+Group=www-data
+ExecStart=/usr/bin/php-fpm-exporter \
+	--addr "0.0.0.0:9015" \
+        --fastcgi=unix:/var/run/php/php7.0-fpm.sock
+[Install]
+WantedBy=multi-user.target
+

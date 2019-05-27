@@ -1,0 +1,40 @@
+---
+- hosts: '{{ host }}'
+  become: yes
+  tasks:
+    - name: test connection
+      ping:
+    - name: create opt directory for prometheus 
+      file: 
+        path: /opt/prometheus 
+        state: directory
+    - name: download php-fpm  exporter
+      get_url:
+        #url: https://github.com/bakins/php-fpm-exporter/releases/download/v0.6.1/php-fpm-exporter.linux.amd64
+        url: https://drive.google.com/uc?id=1p1x_gawIJqxRQao_RRwzXYxwaatl8pbR&export=download
+        dest: /opt/prometheus
+    - name: change 'php-fpm exporter' permissions
+      file: path=/opt/prometheus/php-fpm-exporter.linux.amd64 mode=0777
+
+    - name: adding existing user prometheus to group www-data
+      user:
+        name: prometheus
+        groups: www-data
+        append: yes
+
+    - name: create symlink to php-fpm exporter
+      file:
+        path: /usr/bin/php-fpm-exporter
+        state: link
+        src: /opt/prometheus/php-fpm-exporter.linux.amd64
+    - name: install unit file to systemd
+      template:
+        src: php_fpm_exporter.service
+        dest: /etc/systemd/system/php_fpm_exporter.service
+    - name: configure systemd to use service
+      systemd:
+        daemon_reload: yes
+        enabled: yes
+        state: started
+        name: php_fpm_exporter.service
+        

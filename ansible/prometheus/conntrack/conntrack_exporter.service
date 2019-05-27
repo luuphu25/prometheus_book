@@ -1,0 +1,9 @@
+[Unit]
+Description=Service which runs Conntrack Exporter for Prometheus scraping
+
+[Service]
+User=vagrant
+ExecStart=/usr/bin/conntrack-exporter
+[Install]
+WantedBy=multi-user.target
+

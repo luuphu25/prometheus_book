@@ -1,0 +1,14 @@
+---
+- hosts: new
+  become: yes
+  tasks:
+  - name: create exporter user on mysql
+    mysql_user: 
+      name: exporter
+      password: Password@
+      login_user: root
+      login_password: default
+      state: present
+    with_items:
+      - "*.*:PROCESS,REPLICATION\ CLIENT,SELECT"
+      - "performance_schema.*:SELECT"

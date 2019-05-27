@@ -1,0 +1,11 @@
+[Unit]
+Description=Service which runs proxy push service
+
+[Service]
+User=prometheus
+ExecStart=/usr/bin/proxy \
+	--web.listen-address="0.0.0.0:8888"
+
+[Install]
+WantedBy=multi-user.target
+

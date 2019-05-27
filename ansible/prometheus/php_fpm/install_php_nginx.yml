@@ -1,0 +1,20 @@
+- hosts: '{{ host }}'
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: install php nginx php-fpm
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+            - 'php'
+            - 'php-fpm'
+            - 'nginx'
+    - name: start service
+      service:
+        name: "{{ item }}"
+        state: started 
+      with_items:
+            - 'php7.0-fpm'
+            - 'nginx'

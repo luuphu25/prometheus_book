@@ -1,0 +1,40 @@
+---
+- hosts: '{{ host }}'
+  become: yes
+  tasks:
+    - name: test connection
+      ping:
+    - name: create opt directory for prometheus
+      file:
+        path: /opt/prometheus
+        state: directory
+    - name: download conntrack exporter
+      get_url:
+        #url: https://github.com/bakins/php-fpm-exporter/releases/download/v0.6.1/php-fpm-exporter.linux.amd64
+        url: https://github.com/hiveco/conntrack_exporter/releases/download/v0.3/conntrack_exporter-amd64-linux
+        dest: /opt/prometheus
+    - name: change 'conntrack exporter' permissions
+      file: path=/opt/prometheus/conntrack_exporter-amd64-linux mode=0777
+    - name: set capability NET ADMIN for exporter
+      capabilities:
+              path: /opt/prometheus/conntrack_exporter-amd64-linux
+              capability: cap_net_admin+ep
+              state: present
+
+
+    - name: create symlink to php-fpm exporter
+      file:
+        path: /usr/bin/conntrack-exporter
+        state: link
+        src: /opt/prometheus/conntrack_exporter-amd64-linux
+    - name: install unit file to systemd
+      template:
+        src: conntrack_exporter.service
+        dest: /etc/systemd/system/conntrack_exporter.service
+    - name: configure systemd to use service (port 9318)
+      systemd:
+        daemon_reload: yes
+        enabled: yes
+        state: started
+        name: conntrack_exporter.service
+

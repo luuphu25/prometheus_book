@@ -1,0 +1,27 @@
+---
+- hosts: '{{ host }}'
+  remote_user: vagrant
+  become: yes
+  tasks:
+    - name: download proxy
+      get_url:
+        url: https://drive.google.com/uc?authuser=0&id=1qgbI_O51GJCn5fjOLgeYUoG4D-DWsYS7&export=download
+        dest: /opt/prometheus
+    - name: change permissions
+      file: path=/opt/prometheus/proxy mode=0777
+    - name: create symlink to proxy (port '8888')
+      file:
+        path: /usr/local/bin/proxy
+        state: link
+        src: /opt/prometheus/proxy
+    - name: install unit file to systemd
+      template:
+        src: proxy_push.service
+        dest: /etc/systemd/system/proxy_push.service
+    - name: configure systemd to use service
+      systemd:
+        daemon_reload: yes
+        enabled: yes
+        state: started
+        name: proxy_push.service
+
