@@ -1,6 +1,5 @@
 ---
 - hosts: '{{ host }}'
-  remote_user: ubuntu
   become: yes
   vars:
     node_exporter_version: 0.18.0
@@ -18,9 +17,9 @@
         createhome: no
         system: yes
         state: present
-    - name: create opt directory for prometheus 
-      file: 
-        path: /opt/prometheus 
+    - name: create opt directory for prometheus
+      file:
+        path: /opt/prometheus
         state: directory
     - name: download node exporter
       get_url:
@@ -46,4 +45,4 @@
         enabled: yes
         state: started
         name: node_exporter.service
-        
+

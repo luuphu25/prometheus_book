@@ -4,16 +4,16 @@
 
 Tập hợp các file cấu hình ansible cho việc triển khai các service monitor, các exporter và các thành phần của Prometheus
 
-- [Prometheus](./prometheus/prometheus_setup/README.md)
+- [Prometheus](https://github.com/luuphu25/prometheus_book/tree/master/ansible/prometheus/prometheus_setup)
 
-- [Alertmanager](./prometheus/alertmanager/README.md)
+- [Alertmanager](https://github.com/luuphu25/prometheus_book/tree/master/ansible/prometheus/alertmanager)
 
-- [Node_exporter](./prometheus/node_exporter/README.md)
+- [Node_exporter](https://github.com/luuphu25/prometheus_book/tree/master/ansible/prometheus/node_exporter)
 
-- [PHP-FPM](./prometheus/php_fpm/README.md)
+- [PHP-FPM](https://github.com/luuphu25/prometheus_book/tree/master/ansible/prometheus/php_fpm)
 
-- [Mysql_exporter](./prometheus/mysql_exporter/README.md)
+- [Mysql_exporter](https://github.com/luuphu25/prometheus_book/tree/master/ansible/prometheus/mysql_exporter)
 
-- [ProxyProm](./prometheus/PromProxy/README.md)
+- [ProxyProm](https://github.com/luuphu25/prometheus_book/tree/master/ansible/prometheus/PromProxy)
 
 
