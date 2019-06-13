@@ -4,6 +4,7 @@
 2. [Tạo alert](#tạo-alert)
 3. [Lưu log các alert](#tạo-log-các-alert)
 4. [Template notify](./template-notify)
+5. [Alert Lifecycle](#alert-lifecycle)
 
 
 
@@ -91,3 +92,9 @@ Alertmanager hỗ trợ nhiều kênh thông báo alert khác nhau: email, slack
 Để notify thể hiện nhiều thông tin ta có thể [tạo template](<https://harthoover.com/pretty-alertmanager-alerts-in-slack/>) cho notify gửi đi:
 
 ![image](./better_alert.png)
+
+
+
+### Alert Lifecycle
+
+[https://pracucci.com/prometheus-understanding-the-delays-on-alerting.html](https://pracucci.com/prometheus-understanding-the-delays-on-alerting.html)

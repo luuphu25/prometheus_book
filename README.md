@@ -23,7 +23,7 @@ Giải pháp monitor sử dụng
 3. [Monitor linux](./linux)
 4. [Alert](./alert/README.md)
 5. [Ansible](./ansible/README.md)
-6. [Exporter](./exporter)
+6. [Development](./development/README.md)
 7. [Alertmanager](./alertmanager)
 8. [Sơ đồ triển khai](./diagram/README.md)
 
