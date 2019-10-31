@@ -21,6 +21,6 @@
     "gulp": "^4.0.2"
   },
   "devDependencies": {
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.13"
   }
 }
